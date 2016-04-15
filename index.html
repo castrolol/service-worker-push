@@ -58,7 +58,7 @@
         </div>
     </nav>
 
-    <div class="clear-fix">
+    <div  id="c-1">
 
         <div class="col-md-3  ">
         </div>
@@ -82,9 +82,10 @@
         </div>
     </div>
 
-    <div class="clearfix">
+    <div class="clearfix" id="cf">
     </div>
-    <div>
+    
+    <div  id="c-2">
         <div class="col-md-3    ">
         </div>
 
@@ -128,6 +129,19 @@
     </div>
 
     <script>
+        
+        var r = Math.round( Math.random() );
+        if(r){
+            var c1 = document.querySelector("#c-1");
+            
+            var c2 = document.querySelector("#c-2");
+            var c1Html = c1.innerHTML;
+            var c2Html = c2.innerHTML;
+            c2.innerHTML = c1Html;
+            c1.innerHTML = c2Html;
+          
+        }
+        
         var template = document.querySelector(".template");
             var containers = {
                 "dc": document.querySelector("#dc-container"),
