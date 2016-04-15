@@ -1,0 +1,200 @@
+<html>
+
+<head>
+    <script src="./js/install-service.js"></script>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Star Wars</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <style>
+    .template {
+            display: none;
+        }
+        
+        .icon {
+            width: 32px;
+            height: 32px;
+        }
+        
+        h4 {
+            white-space: pre-line;
+        }
+        
+        h3 {
+            text-shadow: 1px 1px #555;
+        }
+        
+        .overlay {
+            position: fixed;
+            background: rgba(0, 0, 0, .3);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        
+        body.loading .overlay {
+            display: block;
+        }
+        
+        .overlay-text {
+            position: fixed;
+            top: calc(50% - 32px);
+            min-height: 75px;
+            width: 300px;
+            left: calc(50% - 150px);
+            text-align: center;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default  navbar-static-top">
+        <div class="container">
+            <h4><i class="fa fa-trophy"></i> Heroes Contest</h4>
+        </div>
+    </nav>
+
+    <div class="clear-fix">
+
+        <div class="col-md-3  ">
+        </div>
+
+        <div class="col-md-6  ">
+
+            <div class="panel panel-danger ">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> <i class="fa fa-gamepad"></i> Mavel</h3>
+                </div>
+                <div class="panel-body" id="marvel-container">
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3    ">
+
+        </div>
+    </div>
+
+    <div class="clearfix">
+    </div>
+    <div>
+        <div class="col-md-3    ">
+        </div>
+
+        <div class="col-md-6  ">
+
+            <div class="panel panel-info ">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> <i class="fa fa-gamepad"></i> DC Comics</h3>
+                </div>
+                <div class="panel-body" id="dc-container">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3    ">
+        </div>
+
+    </div>
+
+    <div class="template col-md-4 col-xs-6 ">
+        <button class="btn btn-default btn-block">
+            <img src="#" class="icon" />
+            <h4>Iron Man</h4>
+        </button>
+    </div>
+
+    <div class="overlay">
+        <div class="well overlay-text">
+            <div class="col-md-2">
+                <h3 style="margin: 0">
+                    <i class="fa fa-connectdevelop fa-spin" style="padding: 1px;"></i>
+                 
+                </h3>
+            </div>
+            <div class="col-md-8">
+                <h3 style="margin: 0">
+                    Votando...
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var template = document.querySelector(".template");
+            var containers = {
+                "dc": document.querySelector("#dc-container"),
+                "marvel": document.querySelector("#marvel-container"),
+            }
+            var herois = {
+                dc: [
+                        "Superman",
+                        "Batman",
+                        "Aquaman", 
+                        "Flash", 
+                        "Spiderman",
+                        "Wonder Woman"                
+                ],
+                marvel: [
+                    "Hulk",
+                    "Iron Man",
+                    "Deadpool",
+                    "Thor",
+                "Wolwerine",
+                    "Capitao America"
+                ]
+            };
+            
+            var heroes = Object
+                            .keys(herois)
+                            .map(function(team){
+                                var teamHeros = herois[team];
+                                return teamHeros.map(function(hero){
+                                    return { img: team + " - " + hero.toLowerCase() + ".png",   team: team, title: hero  }; 
+                                });
+                            }).reduce(function(agg, item){
+                                item.forEach(function(i){ agg.push(i); });
+                                return agg;
+                            }, []);
+            
+            
+            
+            function voteOnHero(id){
+                return function(){
+                
+                document.body.classList.add("loading");
+                setTimeout(function(){
+                document.body.classList.remove("loading");
+                    
+                }, 2000);
+                
+                };
+            }
+            
+            heroes.forEach(function(hero){
+                console.log(hero);
+            var el =  template.cloneNode(true);
+            el.classList.remove("template");
+                
+            el.querySelector("img").src = "imgs/" + hero.img;
+            el.querySelector("h4").textContent = hero.title;
+            el.querySelector("button").addEventListener("click", voteOnHero(hero.title));
+            
+            containers[hero.team].appendChild(el);
+            
+            
+                
+            });
+    </script>
+
+
+</body>
+
+</html>
