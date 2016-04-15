@@ -1,7 +1,7 @@
 <html>
-
 <head>
 	<script src="./js/install-service.js"></script>
+	<script src="./js/heros.js"></script>
 	<meta name="theme-color" content="#4e5d6c" />
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Heroes Contest</title>
@@ -47,9 +47,16 @@
 			left: calc(50% - 150px);
 			text-align: center;
 		}
+		.alert-info {
+			background-color: #3C87A9 !important;
+		}
+		
+		.panel-info>.panel-heading { 
+			background-color:#3C87A9 !important;
+		}
+		
 	</style>
 </head>
-
 <body>
 	<nav class="navbar navbar-default  navbar-static-top">
 		<div class="container">
@@ -58,47 +65,42 @@
 	</nav>
 
 	<div id="c-1">
-
-		<div class="col-md-3" ></div>
-
+	
+		<div class="col-md-3"></div>
+	
 		<div class="col-md-6">
-
+	
 			<div class="panel panel-danger ">
 				<div class="panel-heading">
-					<h3 class="panel-title"> <i class="fa fa-gamepad"></i> Mavel</h3>
+					<h3 class="panel-title"> <i class="fa fa-gamepad"></i> Marvel</h3>
 				</div>
-				<div class="panel-body" id="marvel-container">.</div>
+				<div class="panel-body" id="marvel-container"></div>
 			</div>
 		</div>
-
-		<div class="col-md-3    ">
-
-		</div>
+	
+		<div class="col-md-3"></div>
 	</div>
 
 	<div class="clearfix" id="cf">
 	</div>
-
+	
 	<div id="c-2">
-		<div class="col-md-3    ">
-		</div>
-
-		<div class="col-md-6  ">
-
+		<div class="col-md-3"></div>
+	
+		<div class="col-md-6">
+	
 			<div class="panel panel-info ">
 				<div class="panel-heading">
 					<h3 class="panel-title"> <i class="fa fa-gamepad"></i> DC Comics</h3>
 				</div>
 				<div class="panel-body" id="dc-container">
-
+	
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3    ">
-		</div>
-
+		<div class="col-md-3"></div>
+	
 	</div>
-
 	<div class="template col-md-4 col-xs-6 ">
 		<button class="btn btn-default btn-block">
 			<img src="#" class="icon" />
@@ -123,82 +125,54 @@
 	</div>
 
 	<script>
-		var r = Math.round( Math.random() );
-        if(r){
-            var c1 = document.querySelector("#c-1");
-            
-            var c2 = document.querySelector("#c-2");
-            var c1Html = c1.innerHTML;
-            var c2Html = c2.innerHTML;
-            c2.innerHTML = c1Html;
-            c1.innerHTML = c2Html;
-          
-        }
-        
-        var template = document.querySelector(".template");
-            var containers = {
-                "dc": document.querySelector("#dc-container"),
-                "marvel": document.querySelector("#marvel-container"),
-            }
-            var herois = {
-                dc: [
-                        "Superman",
-                        "Batman",
-                        "Aquaman", 
-                        "Flash", 
-                        "Spiderman",
-                        "Wonder Woman"                
-                ],
-                marvel: [
-                    "Hulk",
-                    "Iron Man",
-                    "Deadpool",
-                    "Thor",
-                "Wolwerine",
-                    "Capitao America"
-                ]
-            };
-            
-            var heroes = Object
-                            .keys(herois)
-                            .map(function(team){
-                                var teamHeros = herois[team];
-                                return teamHeros.map(function(hero){
-                                    return { img: team + " - " + hero.toLowerCase() + ".png",   team: team, title: hero  }; 
-                                });
-                            }).reduce(function(agg, item){
-                                item.forEach(function(i){ agg.push(i); });
-                                return agg;
-                            }, []);
-            
-            
-            
-            function voteOnHero(id){
-                return function(){
-                
-                document.body.classList.add("loading");
-                setTimeout(function(){
-                document.body.classList.remove("loading");
-                    
-                }, 2000);
-                
-                };
-            }
-            
-            heroes.forEach(function(hero){
-                console.log(hero);
-            var el =  template.cloneNode(true);
-            el.classList.remove("template");
-                
-            el.querySelector("img").src = "imgs/" + hero.img;
-            el.querySelector("h4").textContent = hero.title;
-            el.querySelector("button").addEventListener("click", voteOnHero(hero.title));
-            
-            containers[hero.team].appendChild(el);
-            
-            
-                
-            });
+		var r = Math.round(Math.random());
+		if (r) {
+			var c1 = document.querySelector("#c-1");
+		
+			var c2 = document.querySelector("#c-2");
+			var c1Html = c1.innerHTML;
+			var c2Html = c2.innerHTML;
+			c2.innerHTML = c1Html;
+			c1.innerHTML = c2Html;
+		
+		}
+		
+		var template = document.querySelector(".template");
+		var containers = {
+			"dc": document.querySelector("#dc-container"),
+			"marvel": document.querySelector("#marvel-container"),
+		}
+ 
+		
+		var heroes = allHeroes;
+		
+		
+		function voteOnHero(id) {
+			return function () {
+		
+				document.body.classList.add("loading");
+				setTimeout(function () {
+					document.body.classList.remove("loading");
+		
+				}, 2000);
+		
+			};
+		}
+		
+		heroes.forEach(function (hero) {
+			console.log(hero);
+			var el = template.cloneNode(true);
+			el.classList.remove("template");
+		
+			el.querySelector("img").src = "imgs/" + hero.img;
+			el.querySelector("h4").textContent = hero.title;
+			el.querySelector("button").addEventListener("click", voteOnHero(hero.title));
+		
+			containers[hero.team].appendChild(el);
+		
+		
+		
+		});
 	</script>
 
 

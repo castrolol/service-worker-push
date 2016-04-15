@@ -1,10 +1,176 @@
 <html>
+
 <head>
+	<script src="js/heros.js"></script>
 	<title>Heroes Contest - Panel</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<style>
+		
+		.template {
+			display: none;
+		}
+		
+		.panel-body.bigger {
+			min-height: 300px;
+		}
+		
+		.panel-body h1 {
+			font-size: 56px;
+			text-align: center;
+		}
+		
+		.icon {
+			width: 48px;
+			height: 48px;
+			margin-top: -10px;
+		}
+		
+		.alert h2 {
+			margin: 0;
+			padding: 10px 0 0 0;
+		}
+		
+		h1, h2, h3 {
+			text-shadow: 1px 1px black;
+		}
+		
+		.alert-info {
+			background-color: #3C87A9 !important;
+		}
+		
+		.panel-info>.panel-heading { 
+			background-color:#3C87A9 !important;
+		}
+		
+		.overlay {
+			position: fixed;
+			background: rgba(0, 0, 0, .3);
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		
+		body.loading .overlay {
+			display: block;
+		}
+		
+		.overlay-text {
+			position: fixed;
+			top: calc(50% - 75px);
+			min-height: 75px;
+			width: 300px;
+			left: calc(50% - 150px);
+			text-align: center;
+		}
+		
+	</style>
+
 </head>
+
 <body>
+
+	<nav class="navbar navbar-default  navbar-static-top">
+		<div class="container">
+			<h4><i class="fa fa-trophy"></i> Heroes Contest</h4>
+		</div>
+	</nav>
+
+
+	<div>
+
+		<div>
+
+			<div class="col-md-3">
+			</div>
+
+			<div class="col-md-3">
+
+				<div class="panel panel-danger ">
+					<div class="panel-heading">
+						<h3 class="panel-title"> <i class="fa fa-area-chart"></i> Marvel</h3>
+					</div>
+					<div class="panel-body" id="dc-container">
+						<h1><span id="dc-score">0</span> Voto(s)</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+
+				<div class="panel panel-info ">
+					<div class="panel-heading">
+						<h3 class="panel-title"> <i class="fa fa-area-chart"></i> DC Comics</h3>
+					</div>
+					<div class="panel-body" id="dc-container">
+						<h1><span id="marvel-ccore">0</span>  Voto(s)</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="col-md-3">
+		</div>
+
+		<div class="col-md-6">
+
+			<div class="panel panel-default bigger">
+				<div class="panel-heading">
+					<h3 class="panel-title"> <i class="fa fa-area-chart"></i> Results</h3>
+				</div>
+				<div class="panel-body" id="container">
+
+					<div class="alert alert-danger">
+
+						<h2><img src="imgs/marvel - iron man.png" class="icon" /> Iron Man</h2>
+					</div>
+
+					<div class="alert alert-info">
+
+						<h2><img src="imgs/dc - batman.png" class="icon" /> Batman</h2>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+		</div>
+
+	</div>
 	
+	<div class="template alert">
+		<h2><img src="#" class="icon" /> <span></span></h2>
+	</div>
+
+	<div class="overlay">
+		<div class="well overlay-text">
+			<div class="col-md-2">
+				<h3 style="margin: 0">
+                    <i class="fa fa-connectdevelop fa-spin" style="padding: 1px;"></i>
+                 
+                </h3>
+			</div>
+			<div class="col-md-8">
+				<h3 style="margin: 0">
+                    Votando...
+                </h3>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/panel.js"></script>
 	
-	
+	<script>
+		panel.init();
+	</script>
+
 </body>
+
 </html>
