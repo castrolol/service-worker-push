@@ -47,7 +47,7 @@
 
     function sendToFirefox($heroi, $ids){
         global $db;
-        $versions = $db->query("select value from params key='version' LIMIT 1", PDO::FETCH_NUM)
+        $versions = $db->query("select value from params key='version' LIMIT 1", PDO::FETCH_NUM);
          
         $version = $versions[0][0];
         $stmt = $db->prepare("UPDATE params SET value=:version WHERE key='version' ");
