@@ -60,7 +60,7 @@ self.addEventListener("notificationclick", function(event) {
                         return client.focus();
                 }
                 if (clients.openWindow) {
-                    return clients.openWindow('/heroes/results.html');
+                    return clients.openWindow('/service-worker-push/results.html');
                 }
             })
     );
