@@ -13,7 +13,8 @@
 	}
 
 	Panel.prototype.addPoint = function (name) {
-        document.querySelector(".cade").innerHTML = "";
+        var cade = document.querySelector(".cade");
+        if(cade) cade.style.display = "none";
         
 		var hero = w.allHeroes.find(function (h) { return h.title.toLowerCase() == name.toLowerCase() });
 
@@ -42,9 +43,7 @@
 				return r.json() 
 			})
 			.then(function(itens){ 
-                if(itens.length){
-                    container.innerHTML = "";
-                }
+            
 				itens.forEach(addPoint);	
 				document.body.classList.remove("loading"); 
 			})

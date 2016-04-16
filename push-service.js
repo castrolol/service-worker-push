@@ -70,9 +70,6 @@ self.addEventListener("notificationclick", function(event) {
 
 
 self.addEventListener('push', function(event) {
-    console.log('Push message', event);
-
-    console.log(arguments);
 
     event.waitUntil(
         fetch("https://castrolol.com/heroes-api/?push=true")
