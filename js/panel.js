@@ -33,13 +33,17 @@
 
 	Panel.prototype.init = function () {
 		var addPoint = this.addPoint.bind(this);
-		document.body.classList.add("loading");
+		var container = this._container;
+        document.body.classList.add("loading");
 
-		fetch( location.protocol + "//castrolol.com/heroes-api/?from=0", { mode: 'no-cors'  })
+		fetch( location.protocol + "//castrolol.com/heroes-api/?from=0")
 			.then(function(r){ 
 				return r.json() 
 			})
 			.then(function(itens){ 
+                if(itens.length){
+                    container.innerHTML = "";
+                }
 				itens.forEach(addPoint);	
 				document.body.classList.remove("loading"); 
 			})
