@@ -35,7 +35,7 @@
 		var addPoint = this.addPoint.bind(this);
 		document.body.classList.add("loading");
 
-		fetch("http://castrolol.com/heroes-api/?from=0", { mode: 'no-cors'  })
+		fetch( location.protocol + "//castrolol.com/heroes-api/?from=0", { mode: 'no-cors'  })
 			.then(function(r){ 
 				return r.json() 
 			})
