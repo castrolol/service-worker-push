@@ -13,7 +13,8 @@
 	}
 
 	Panel.prototype.addPoint = function (name) {
-
+        document.querySelector(".cade").innerHTML = "";
+        
 		var hero = w.allHeroes.find(function (h) { return h.title.toLowerCase() == name.toLowerCase() });
 
 		this._scores[hero.team].textContent = +(this._scores[hero.team].textContent) + 1;
